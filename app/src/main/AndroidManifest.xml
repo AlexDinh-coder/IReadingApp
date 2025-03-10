@@ -13,26 +13,31 @@
         android:theme="@style/Theme.IReadingBook"
         tools:targetApi="31">
         <activity
-            android:name=".ChiTietSachActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DangKiActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DangNhapActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".ForgotPasswordActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ChiTietSachActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".DangKiActivity"
+            android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".DangNhapActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"></activity>
     </application>
 
 </manifest>
