@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "WaKa"
+rootProject.name = "IRead"
 include(":app")
  

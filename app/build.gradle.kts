@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.waka"
+    namespace = "com.example.iread"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.waka"
+        applicationId = "com.example.iread"
         minSdk = 27
         targetSdk = 34
         versionCode = 1
@@ -44,4 +44,27 @@ dependencies {
     // Gilde
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0")
+
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.0")
+    implementation("io.reactivex.rxjava3:rxjava:3.0.0")
+
+    //CircleImageView
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+    //Gson
+    implementation ("com.google.code.gson:gson:2.10.1")
+    //SwipeFreshLayout
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    //Navigation Components
+    implementation ("com.google.android.material:material:1.10.0")
+    //FlexBoxLayout
+    implementation ("com.google.android.flexbox:flexbox:3.0.0")
+
+
+
 }
