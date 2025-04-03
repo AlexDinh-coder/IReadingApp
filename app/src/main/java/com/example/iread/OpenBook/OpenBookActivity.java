@@ -4,6 +4,7 @@ import static android.content.Intent.getIntent;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.iread.Interface.ParameterInterface;
@@ -45,6 +47,8 @@ public class OpenBookActivity extends AppCompatActivity implements ParameterInte
     private ReviewAdapter reviewAdapter;
     TabLayout tabLayout;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     ImageView btnBack;
     FrameLayout contentFrame;
     @Override
@@ -64,6 +68,10 @@ public class OpenBookActivity extends AppCompatActivity implements ParameterInte
         btnBack.setOnClickListener(v -> {
             finish(); // Quay lại màn trước đó
         });
+
+
+
+
 
 
 
@@ -114,7 +122,12 @@ public class OpenBookActivity extends AppCompatActivity implements ParameterInte
                     chapterFragment.setArguments(bundle);
                     loadFragment(chapterFragment);
                 } else if (tab.getPosition() == 1) {
-                    loadFragment(new MinghtLikeFragment());
+                    MinghtLikeFragment minghtLikeFragment = new MinghtLikeFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("bookId", bookId);
+                    minghtLikeFragment.setArguments(bundle);
+                    loadFragment(minghtLikeFragment);
+
                 }
             }
 
@@ -159,24 +172,6 @@ public class OpenBookActivity extends AppCompatActivity implements ParameterInte
                 .commit();
     }
 
-    private void fetchBookDetail(int bookId) {
-        iAppApiCaller = RetrofitClient.getInstance(Utils.BASE_URL, this).create(IAppApiCaller.class);
-        iAppApiCaller.getBookById(bookId).enqueue(new Callback<ReponderModel<Book>>() {
-            @Override
-            public void onResponse(Call<ReponderModel<Book>> call, Response<ReponderModel<Book>> response) {
-                if (response.isSuccessful() && response.body() != null && !response.body().getDataList().isEmpty()) {
-                    Book book = response.body().getDataList().get(0);
-                    showBookDetailUI(book);
-                }
-            }
-            
-
-            @Override
-            public void onFailure(Call<ReponderModel<Book>> call, Throwable t) {
-                Log.e("BookAPI", "Lỗi gọi API GetBookById: " + t.getMessage());
-            }
-        });
-    }
 
     private void showBookDetailUI(Book book) {
         // 1. Hiển thị ảnh bìa sách
